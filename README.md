@@ -1,9 +1,6 @@
-## React Template
-Personal template for starting React projects.
+# TOP: Blog (Frontend)
+Website for interacting with the Blog API.
 
-### Features
-- Vite as the bundler
-- Testing setup with vitest and React Testing Library
-- ESLint
-- Custom hooks provided:
-  - `useAxios`: making API calls with the axios package
+[Blog API](https://github.com/endulum/odin-blog-api)
+
+[Section](https://www.theodinproject.com/lessons/nodejs-blog-api)
