@@ -1,48 +1,35 @@
 import { useEffect, useState } from 'react';
-
+import { Routes, Route, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import useLocalStorage from './custom-hooks/useLocalStorage';
 import JSONForm from './components/JSONForm';
+
+import Layout from './components/Layout';
+import Login from './routes/Login';
+import Main from './routes/Main';
+import NoMatch from './routes/NoMatch';
+
 import './styles/style.css';
 
 export default function App() {
   const [token, setToken] = useLocalStorage('token', null);
 
-  return (
-    <div>
-      <h1>Bloggo</h1>
-      { token ? (
-        <div>
-          <p>
-            You&apos;re logged in as
-            {' '}
-            <b>{token.displayName}</b>
-            .
-            <button type="button" onClick={() => setToken(null)}>
-              Log Out
-            </button>
-          </p>
-        </div>
-      ) : (
-        <div>
-          <p>You&apos;re not logged in.</p>
-          <JSONForm
-            onSuccess={setToken}
-            method="POST"
-            endpoint="login"
-          >
-            <label htmlFor="userName">
-              <span>User Name:</span>
-              <input type="text" id="userName" />
-            </label>
+  function handleLogOut() { setToken(null); }
 
-            <label htmlFor="password">
-              <span>Password:</span>
-              <input type="password" id="password" />
-            </label>
-          </JSONForm>
-        </div>
-      )}
-    </div>
+  return (
+    <Routes>
+      <Route element={<Layout token={token} onLogOut={handleLogOut} />}>
+        <Route path="/" element={<Main token={token} />} />
+        <Route
+          path="/login"
+          element={
+          token
+            ? <Navigate to="/" />
+            : <Login setToken={setToken} />
+          }
+        />
+        <Route path="*" element={<NoMatch />} />
+      </Route>
+    </Routes>
   );
 }

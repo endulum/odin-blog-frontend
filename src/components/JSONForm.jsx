@@ -12,7 +12,9 @@ function JSONForm({
   const [errors, setErrors] = useState([]);
   const [waiting, setWaiting] = useState(false);
 
-  function handleChange(e) { setForm({ ...form, [e.target.id]: e.target.value }); }
+  function handleChange(e) {
+    setForm({ ...form, [e.target.id]: e.target.value });
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
