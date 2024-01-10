@@ -4,9 +4,12 @@ export default function Main({ token }) {
       {token
         ? (
           <p>
-            You're logged in as
+            You&apos;re logged in as
             {' '}
-            <b>{token.displayName}</b>
+            <b>
+              {token.userName}
+              .
+            </b>
           </p>
         )
         : <p>You're not logged in.</p>}

@@ -8,7 +8,9 @@ const useAxios = (url, method, payload) => {
   const [error, setError] = useState(null);
 
   const fetchData = async () => {
+    setData(null);
     setIsLoading(true);
+    setError(null);
     try {
       const response = await axios({ method, url, payload });
       // console.log(response.data);
@@ -32,7 +34,7 @@ const useAxios = (url, method, payload) => {
     setIsLoading(false);
   };
 
-  useEffect(() => { fetchData(); }, []);
+  useEffect(() => { fetchData(); }, [url]);
 
   return {
     data, isLoading, error, fetchData,

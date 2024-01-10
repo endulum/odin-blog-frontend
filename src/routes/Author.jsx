@@ -1,15 +1,13 @@
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import useAxios from '../custom-hooks/useAxios';
 
 export default function Author() {
   const {
-    data, isLoading, error, fetchData,
+    data, isLoading, error,
   } = useAxios(
     `http://localhost:3000/api/author/${useParams().id}`,
     'GET',
   );
-
-  console.log('hi');
 
   return (
     <>
@@ -36,13 +34,10 @@ export default function Author() {
               </li>
             ))}
           </ul>
-        ) : <p><i>This author hasn't written any posts yet.</i></p>}
+        ) : <p><i>This author hasn&apos;t written any posts yet.</i></p>}
       </>
       )}
       {error && <p><i>{error}</i></p>}
     </>
   );
 }
-
-// problem: if i navigate right between author urls, nothing changes.
-// i have to either refresh, or go to '/' and then go the next author url. why?
