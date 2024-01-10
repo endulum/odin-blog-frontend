@@ -24,6 +24,12 @@ header {
   align-items: center;
 }
 
+nav {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
 .nav-link {
   color: #666;
   font-weight: bold;
@@ -40,4 +46,8 @@ main {
 
 .error {
   border: 2px solid red;
+}
+
+ul {
+  margin-left: 1rem;
 }

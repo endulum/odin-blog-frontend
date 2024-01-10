@@ -7,6 +7,7 @@ import JSONForm from './components/JSONForm';
 import Layout from './components/Layout';
 import Login from './routes/Login';
 import Main from './routes/Main';
+import Author from './routes/Author';
 import NoMatch from './routes/NoMatch';
 
 import './styles/style.css';
@@ -27,6 +28,14 @@ export default function App() {
             ? <Navigate to="/" />
             : <Login setToken={setToken} />
           }
+        />
+        <Route
+          path="/author/:id"
+          element={(
+            <Author
+              token={token}
+            />
+          )}
         />
         <Route path="*" element={<NoMatch />} />
       </Route>

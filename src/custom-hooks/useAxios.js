@@ -11,7 +11,7 @@ const useAxios = (url, method, payload) => {
     setIsLoading(true);
     try {
       const response = await axios({ method, url, payload });
-      console.log(response.data);
+      // console.log(response.data);
       setData(response.data);
     } catch (e) {
       if (e.response) { // received some failed status code
@@ -20,12 +20,14 @@ const useAxios = (url, method, payload) => {
           status: e.response.status,
           headers: e.response.headers,
         });
+        setError(e.response.data);
       } else if (e.request) { // there was no response
         console.error('Received no response.', e.request);
+        setError('Received no response from the API.');
       } else {
         console.error(`Error: ${e.message}`);
+        setError(e);
       }
-      setError(e.message);
     }
     setIsLoading(false);
   };

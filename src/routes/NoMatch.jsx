@@ -5,7 +5,7 @@ export default function NoMatch() {
     <p>
       No route found for this URL.
       {' '}
-      <Link to="/" class="nav-link">Go back home</Link>
+      <Link to="/" className="nav-link">Go back home</Link>
     </p>
   );
 }
