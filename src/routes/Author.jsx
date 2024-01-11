@@ -1,7 +1,7 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import useAxios from '../custom-hooks/useAxios';
 
-export default function Author() {
+export default function Author({ token }) {
   const {
     data, isLoading, error,
   } = useAxios(
@@ -19,6 +19,13 @@ export default function Author() {
           @
           {data.userName}
         </h2>
+        {data.userName === token.userName && (
+        <p>
+          <Link to={`/author/${token.userName}/edit`} className="nav-link">
+            Edit your details
+          </Link>
+        </p>
+        )}
         <p>{data.bio}</p>
         <h2>Posts</h2>
         {data.posts.length > 0 ? (

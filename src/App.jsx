@@ -8,12 +8,14 @@ import Layout from './components/Layout';
 import Login from './routes/Login';
 import Main from './routes/Main';
 import Author from './routes/Author';
+import AuthorEdit from './routes/AuthorEdit';
 import NoMatch from './routes/NoMatch';
 
 import './styles/style.css';
 
 export default function App() {
   const [token, setToken] = useLocalStorage('token', null);
+  // todo: this token needs to be adjusted if the author changes their username
 
   function handleLogOut() { setToken(null); }
 
@@ -31,11 +33,15 @@ export default function App() {
         />
         <Route
           path="/author/:id"
-          element={(
-            <Author
-              token={token}
-            />
-          )}
+          element={<Author token={token} />}
+        />
+        <Route
+          path="/author/:id/edit"
+          element={
+            token
+              ? <AuthorEdit token={token} />
+              : <Navigate to="/" />
+          }
         />
         <Route path="*" element={<NoMatch />} />
       </Route>

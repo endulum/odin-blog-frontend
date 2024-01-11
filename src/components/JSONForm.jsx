@@ -6,6 +6,7 @@ function JSONForm({
   onSuccess,
   method,
   endpoint,
+  token,
   children,
 }) {
   const [form, setForm] = useState({});
@@ -18,12 +19,16 @@ function JSONForm({
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setErrors([]);
     setWaiting(true);
     try {
       const response = await axios({
         method,
         url: `http://localhost:3000/api/${endpoint}`,
         data: form,
+        headers: token ? {
+          Authorization: `Bearer ${token.tokenHash}`,
+        } : null,
       });
       if (response.data.errors) setErrors(response.data.errors);
       else onSuccess(response.data);
@@ -34,7 +39,8 @@ function JSONForm({
   }
 
   useEffect(() => {
-    document.querySelectorAll('input').forEach((input) => {
+    // console.log(errors);
+    document.querySelectorAll('input, textarea').forEach((input) => {
       input.classList.remove('error');
     });
     if (errors.length > 0) {
@@ -43,6 +49,14 @@ function JSONForm({
       });
     }
   }, [errors]);
+
+  useEffect(() => {
+    const formPreset = {};
+    document.querySelectorAll('input, textarea').forEach((input) => {
+      formPreset[input.id] = input.value;
+    });
+    setForm(formPreset);
+  }, []);
 
   return (
     <form onSubmit={handleSubmit} onChange={handleChange}>
@@ -56,7 +70,6 @@ function JSONForm({
       )}
       {waiting && <p>Waiting...</p>}
       {children}
-      <button type="submit">Log In</button>
     </form>
   );
 }

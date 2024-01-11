@@ -21,6 +21,7 @@ export default function Login({ setToken }) {
         <span>Password:</span>
         <input type="password" id="password" />
       </label>
+      <button type="submit">Log In</button>
     </JSONForm>
   );
 }
