@@ -53,7 +53,7 @@ ul {
   margin-left: 1rem;
 }
 
-footer {
+.boxed {
   background-color: #eee;
   border: 1px solid #ddd;
   padding: 1rem;

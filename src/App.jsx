@@ -11,6 +11,8 @@ export default function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<Index />} />
+        <Route path="/post/:id" />
+        <Route path="/author/:id" />
         <Route path="*" element={<NoMatch />} />
       </Route>
     </Routes>
