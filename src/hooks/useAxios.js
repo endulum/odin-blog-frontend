@@ -32,7 +32,7 @@ const useAxios = (url, method, payload) => {
     setResponseError(null);
     try {
       const response = await axios({ method, url, payload });
-      console.log(response.data);
+      // console.log(response.data);
       setData(response.data);
     } catch (e) {
       handleResponseError(e);

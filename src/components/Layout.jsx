@@ -1,6 +1,6 @@
 import { Link, Outlet } from 'react-router-dom';
 
-export default function Layout() {
+export default function Layout({ token, onLogOut }) {
   return (
     <>
       <header>
@@ -8,7 +8,17 @@ export default function Layout() {
           <Link to="/" className="nav-link">Blog</Link>
         </h1>
         <nav>
-          <Link to="/login" className="nav-link">Log In</Link>
+          {!token && <Link to="/login" className="nav-link">Log In</Link>}
+          {token && (
+            <>
+              <span>
+                Logged in as
+                {' '}
+                <Link to={`/author/${token.userName}`} className="nav-link">{token.userName}</Link>
+              </span>
+              <Link to="/" onClick={() => onLogOut(null)} className="nav-link">Log Out</Link>
+            </>
+          )}
         </nav>
       </header>
       <main>
