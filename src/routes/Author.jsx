@@ -13,7 +13,7 @@ export default function Author({ token }) {
     <>
       {isLoading && <p>Loading...</p>}
       {responseError && (
-      <p>
+      <p className="api-error">
         <b>API error:</b>
         {' '}
         {responseError}

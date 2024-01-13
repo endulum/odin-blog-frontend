@@ -5,6 +5,7 @@ import APIForm from '../components/APIForm';
 export default function AuthorEditor({ token, setToken }) {
   const { id } = useParams();
   const [success, setSuccess] = useState(false);
+  if (success) return (<Navigate to={`/author/${token.userName}`} />);
   if (id === token.userName) {
     return (
       <APIForm
@@ -36,6 +37,6 @@ export default function AuthorEditor({ token, setToken }) {
         <button type="submit">Submit</button>
       </APIForm>
     );
-  } if (success) return (<Navigate to={`/author/${token.userName}`} />);
+  }
   return (<Navigate to={`/author/${id}`} />);
 }
