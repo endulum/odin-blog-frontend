@@ -1,11 +1,12 @@
 import { Link, useParams } from 'react-router-dom';
 import useAxios from '../hooks/useAxios';
 
-export default function Post() {
+export default function Post({ token }) {
+  const { id } = useParams();
   const {
     data, isLoading, responseError, fetchData,
   } = useAxios(
-    `http://localhost:3000/api/post/${useParams().id}`,
+    `http://localhost:3000/api/post/${id}`,
     'GET',
   );
   return (
@@ -22,6 +23,11 @@ export default function Post() {
       <>
         <h2>{data.title}</h2>
         <h3>{data.subtitle}</h3>
+        {token.userName === data.author.userName && (
+        <Link to={`/post/${id}/edit`} className="nav-link">
+          Edit this post
+        </Link>
+        )}
         <p>
           By
           {' '}

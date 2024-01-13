@@ -1,11 +1,12 @@
 import { useParams, Link } from 'react-router-dom';
 import useAxios from '../hooks/useAxios';
 
-export default function Author() {
+export default function Author({ token }) {
+  const { id } = useParams();
   const {
     data, isLoading, responseError, fetchData,
   } = useAxios(
-    `http://localhost:3000/api/author/${useParams().id}`,
+    `http://localhost:3000/api/author/${id}`,
     'GET',
   );
   return (
@@ -25,6 +26,11 @@ export default function Author() {
             @
             {data.userName}
           </h3>
+          {token.userName === id && (
+            <Link to={`/author/${id}/edit`} className="nav-link">
+              Edit your info
+            </Link>
+          )}
           <p>
             Joined on
             {' '}
