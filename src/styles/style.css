@@ -59,3 +59,10 @@ ul {
   padding: 1rem;
   margin-top: 1rem;
 }
+
+.api-error {
+  color: firebrick;
+  border: 1px solid firebrick;
+  background-color: bisque;
+  padding: 1rem;
+}

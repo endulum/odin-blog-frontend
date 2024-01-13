@@ -5,6 +5,7 @@ export default function APIForm({
   url,
   method,
   onSuccess,
+  token,
   children,
 }) {
   // holds form data
@@ -65,7 +66,7 @@ export default function APIForm({
         method: isGettingExistingData ? 'GET' : method,
         data: isGettingExistingData ? null : form,
         headers: isGettingExistingData ? null : {
-          Authorization: `Bearer ${localStorage.getItem('tokenHash')}`,
+          Authorization: `Bearer ${token.tokenHash}`,
         },
       });
       if (isGettingExistingData) {
@@ -83,7 +84,7 @@ export default function APIForm({
       } else if (response.data.errors) setInputErrors(response.data.errors);
       else {
         setSuccess(true);
-        onSuccess(response.data);
+        onSuccess(form, response.data);
       }
     } catch (e) {
       handleResponseError(e);
@@ -109,7 +110,7 @@ export default function APIForm({
   return success ? (<div>Success</div>) : (
     <>
       {responseError ? (
-        <div>
+        <div className="api-error">
           <b>API error:</b>
           {' '}
           {responseError}

@@ -30,7 +30,7 @@ export default function App() {
         <Route path="/post/:id" element={<Post token={token} />} />
         <Route path="/post/:id/edit" element={<PostEditor token={token} />} />
         <Route path="/author/:id" element={<Author token={token} />} />
-        <Route path="/author/:id/edit" element={<AuthorEditor token={token} />} />
+        <Route path="/author/:id/edit" element={<AuthorEditor token={token} setToken={setToken} />} />
         <Route path="*" element={<NoMatch />} />
       </Route>
     </Routes>

@@ -13,7 +13,13 @@ export default function Index() {
   return (
     <>
       {isLoading && <p>Loading...</p>}
-      {responseError && <p>{responseError}</p>}
+      {responseError && (
+      <p className="api-error">
+        <b>API Error:</b>
+        {' '}
+        {responseError}
+      </p>
+      )}
       {data && (
       <>
         <h2>Post Overview</h2>
