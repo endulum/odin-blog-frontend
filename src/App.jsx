@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import Layout from './components/Layout';
 import Index from './routes/Index';
+import Post from './routes/Post';
 import NoMatch from './routes/NoMatch';
 
 import './styles/style.css';
@@ -11,7 +12,7 @@ export default function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<Index />} />
-        <Route path="/post/:id" />
+        <Route path="/post/:id" element={<Post />} />
         <Route path="/author/:id" />
         <Route path="*" element={<NoMatch />} />
       </Route>

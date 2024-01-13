@@ -46,4 +46,5 @@ export default function Index() {
   );
 }
 
+// todo: sort posts from newest to oldest
 // nice-to-have: pagination
