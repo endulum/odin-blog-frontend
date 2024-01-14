@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const useAxios = (url, method, payload) => {
   const [data, setData] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [responseError, setResponseError] = useState(null);
 
   function handleResponseError(e) {
