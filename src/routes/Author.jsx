@@ -38,6 +38,9 @@ export default function Author({ token }) {
           </p>
           <p>{data.bio}</p>
           <h2>Posts</h2>
+          <p>
+            <Link className="nav-link" to="/post/new">New Post</Link>
+          </p>
           {data.posts.length < 1 ? <p><i>This author has not made any posts yet.</i></p> : (
             <>
               {data.posts.map((post) => (

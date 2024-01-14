@@ -23,6 +23,9 @@ export default function Index() {
       {data && (
       <>
         <h2>Post Overview</h2>
+        <p>
+          <Link className="nav-link" to="/post/new">New Post</Link>
+        </p>
         {data.map((post) => (
           <div key={post.id} className="boxed">
             <h3>
